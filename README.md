@@ -1,34 +1,35 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Netlify
 
-First, run the development server:
+This demo has been deployed on Netlify:
 
-```bash
-npm run dev
-# or
-yarn dev
+[Demo](https://tubular-gnome-1c7ca0.netlify.app/) - Static generated site demo.
+
+## Issue
+
+The Footer is dynamically loaded, yet, the whole markup is present in the view source.
+
+```
+import dynamic from 'next/dynamic';
+
+...
+
+const DynamicFooter = dynamic(() => import('../components/Footer'))
+
+...
+
+<DynamicFooter />
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Output
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+The markup is pre-generated and available.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+`<footer class="Home_footer____T7K"><a href="https://vercel.com" target="_blank" rel="noopener noreferrer">© Powered by Cat</a></footer>`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# Expectation
 
-## Learn More
+The markup should be dynamically generated and loaded when in view, thus reducing the number of JS files loaded at page load.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
