@@ -23,13 +23,13 @@ const DynamicFooter = dynamic(() => import('../components/Footer'))
 
 ```
 
-# Output
+## Output
 
 The markup is pre-generated and available.
 
 `<footer class="Home_footer____T7K"><a href="https://vercel.com" target="_blank" rel="noopener noreferrer">© Powered by Cat</a></footer>`
 
-# Expectation
+## Expectation
 
 The markup should be dynamically generated and loaded when in view, thus reducing the number of JS files loaded at page load.
 
