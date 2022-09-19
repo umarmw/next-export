@@ -3,9 +3,11 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import styles from '../styles/Home.module.css';
 
-const Home: NextPage = () => {
+const DynamicFooter = dynamic(() => import('../components/Footer'), {
+  suspense: true,
+})
 
-  const DynamicFooter = dynamic(() => import('../components/Footer'))
+const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
@@ -73,8 +75,10 @@ const Home: NextPage = () => {
         </div>
       </main>
 
-      <DynamicFooter />
-      
+      <Suspense fallback={`Loading...`}>
+        <DynamicFooter />
+      </Suspense>
+
     </div>
   )
 }
