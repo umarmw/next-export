@@ -1,12 +1,15 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import styles from '../styles/Home.module.css';
 
-const DynamicFooter = dynamic(() => import('../components/Footer'), {
-  suspense: true,
-})
+
+const DynamicFooter = React.lazy(() => import('../components/Footer'));
+
+// const DynamicFooter = dynamic(() => import('../components/Footer'), {
+//   suspense: true,
+// })
 
 const Home: NextPage = () => {
 
