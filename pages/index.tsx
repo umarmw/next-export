@@ -1,15 +1,13 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import React, { Suspense } from 'react';
-// import dynamic from 'next/dynamic';
+import lazyHydrate from 'next-lazy-hydrate';
 import styles from '../styles/Home.module.css';
 
 
-const DynamicFooter = React.lazy(() => import('../components/Footer'));
-
-// const DynamicFooter = dynamic(() => import('../components/Footer'), {
-//   suspense: true,
-// })
+const DynamicFooter = lazyHydrate(
+  () => import('../components/Footer') ,
+  { on: [['visible', () => ({ rootMargin: '50px' })]] }
+);
 
 const Home: NextPage = () => {
 
@@ -79,9 +77,7 @@ const Home: NextPage = () => {
         </div>
       </main>
 
-      <Suspense fallback={`Loading...`}>
-        <DynamicFooter />
-      </Suspense>
+      <DynamicFooter />
 
     </div>
   )
